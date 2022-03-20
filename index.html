@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js"></script>
+	</head>
+	<body>
+		 <div id="ppa">
+		 	<ul>
+		 		
+				<school :school-name="item" :index="index"  v-for="item,index in schoolList"></school>
+				
+		 	</ul>
+			<h2>选择的学校是:{{chooseSchool}}</h2>
+		 </div>
+		 <script type="text/javascript">
+		 	 //定义组件
+		 	 Vue.component("school",{
+				  props:["schoolName","index","action"],
+		 	 	template:`<li>
+		 			  <h2>产品名称:{{index}}---{{schoolName}}</h2>
+					  <button @click="$root.thangeEvent(schoolName)">选择学校</button>
+		 		     </li>`,
+					 
+					
+		 	 })
+			  //根组件
+		 	let pp=new Vue({
+		 		el:"#ppa",
+		 		data:{
+		 			schoolList:["小王","小戏","小红"],
+					chooseSchool:""
+		 		},
+				methods:{
+					thangeEvent:function(data){
+						this.chooseSchool=data
+					}
+				}
+		 	})
+		 </script>
+	</body>
+</html>
